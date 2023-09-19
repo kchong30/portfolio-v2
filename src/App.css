@@ -1,0 +1,99 @@
+
+h1, p {
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.hero-button {
+  background-image: linear-gradient(to left, white 50%, rgb(110, 231, 183) 50%);
+  background-size: 200% 100%;
+  background-position: 100% 0; /* Start with white fully visible */
+  transition: all 0.2s;
+}
+
+.hero-button:hover {
+  background-position: 0 0; /* Reveal emerald-300 on hover */
+  color: white;
+}
+
+.skills {
+  height: 130vh;
+  background-color: rgb(8, 51, 68);
+  clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%); /* Slant at the bottom */
+
+}
+
+.projects {
+  height: 100vh;
+}
+
+.about {
+  height: 100vh;
+  background-color:rgb(8, 51, 68);
+  clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%); /* Slant at the bottom */
+}
+
+.about .profile-picture {
+  width: 23rem;
+  height: 23rem;
+  border-radius: 50%;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  background-image: url('./assets/bnw.PNG');
+  background-position: 50% 65%;
+  background-size: cover; 
+  border-width: 0.5rem;
+  border-color: rgb(110, 231, 183);
+}
+
+.about .biography {
+  color: white;
+  font-size: 1.3rem;
+  font-weight: 550;
+}
+
+.contact {
+  height:85vh;
+}
+
+@keyframes fadeInFromRight {
+  0% {
+      opacity: 0;
+      transform: translateX(50px);
+  }
+  100% {
+      opacity: 1;
+      transform: translateX(0);
+  }
+}
+
+@keyframes fadeInFromleft {
+  0% {
+      opacity: 0;
+      transform: translateX(-50px);
+  }
+  100% {
+      opacity: 1;
+      transform: translateX(0);
+  }
+}
+
+.hero-left {
+  animation: fadeInFromleft 1.4s forwards;
+}
+
+.hero-right {
+  animation: fadeInFromRight 1.4s forwards;
+}
+
+.hero-img {
+  width: 16rem;
+}
+
+.bamboo-img{
+  width: 10rem;
+}
+
+.carousel-container{
+  width:70%;
+
+}
