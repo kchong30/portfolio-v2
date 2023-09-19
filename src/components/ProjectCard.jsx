@@ -4,7 +4,7 @@ import '../styles/ProjectCard.css'
 function ProjectCard({project}) {
 
   const technologies = project.technology || [];  // Set a default to an empty array
-  console.log(technologies);
+
   
   return (
     <div className="project-card flex">

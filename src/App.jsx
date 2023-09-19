@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import Skills from './components/Skills';
 import emailjs from '@emailjs/browser';
-import { useRef, useCallback } from 'react';
+import { useRef, useCallback, useState } from 'react';
 import ProjectCarousel from './components/ProjectCarousel';
 
 
@@ -48,6 +48,8 @@ const projects = [
 
 function App() {
   const form = useRef();
+  const [messageStatus, setMessageStatus] = useState(null);  // Initial state is null
+
   
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -55,13 +57,15 @@ function App() {
 
   const sendEmail = (e) => {
     e.preventDefault();
-  
+
     emailjs.sendForm('service_q9s74sh', 'template_k7gwxx9', form.current, '6UQ_nFsDmadhwJzUD')
       .then((result) => {
         console.log(result.text);
         form.current.reset();
+        setMessageStatus("Message Sent Successfully");   // Set the success message
       }, (error) => {
         console.log(error.text);
+        setMessageStatus("Something Went Wrong - Try Again Later");  // Set the error message
       });
   };
 
@@ -118,7 +122,7 @@ function App() {
     contactRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
-console.log("Is skills section in view?", inViewSkills);
+
 
 
   return (
@@ -200,8 +204,6 @@ console.log("Is skills section in view?", inViewSkills);
         </div>
       </motion.section>
 
-
-
       <motion.section className="about flex flex-col items-center justify-center"
         ref={setRefs(aboutRef, inViewAboutRef)}
         variants={fadeIn}
@@ -247,6 +249,8 @@ console.log("Is skills section in view?", inViewSkills);
           </div>
           <button type="submit" className="bg-cyan-950 text-white py-2 px-4 rounded w-1/3 mx-auto">Submit</button>
         </form>
+        {messageStatus && <p className="mt-4 text-center">{messageStatus}</p>}   {/* Display the feedback message based on the messageStatus state */}
+
       </motion.section>
 
       <footer className="footer flex items-center justify-center py-10 bg-gray-800 mt-auto flex-col">
@@ -254,17 +258,15 @@ console.log("Is skills section in view?", inViewSkills);
         <i className="fas fa-angle-double-up bg-emerald-300 p-3 w-10 rounded-full text-white"></i>
       </button>
       <div className="links flex space-x-8">
-        {/* LinkedIn */}
+
         <a href="https://www.linkedin.com/in/kevin-c-803818137/" target="_blank" rel="noreferrer" className="text-white hover:text-emerald-300 text-2xl">
           <i className="fab fa-linkedin-in"></i>
         </a>
         
-        {/* Github */}
         <a href="https://github.com/kchong30" target="_blank" rel="noreferrer" className="text-white hover:text-emerald-300 text-2xl">
           <i className="fab fa-github"></i>
         </a>
         
-        {/* Resume */}
         <a href="https://drive.google.com/file/d/1zoOGVsITfmPSH4M6f3_jmDzL2VYH_5rr/view?usp=sharing" target="_blank" rel="noreferrer" className="text-white hover:text-emerald-300 text-2xl">
           <i className="fas fa-file-alt"></i>
         </a>
